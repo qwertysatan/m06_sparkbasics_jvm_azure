@@ -46,7 +46,7 @@ RUN wget -O $SPARK_HOME/jars/azure-keyvault-core-1.0.0.jar https://repo1.maven.o
 RUN wget -O $SPARK_HOME/jars/azure-keyvault-core-1.0.0.jar https://repo1.maven.org/maven2/ch/hsr/geohash/1.4.0/geohash-1.4.0.jar
 
 COPY entrypoint.sh /opt/
-COPY ../target/sparkbasics-1.0.0.jar $SPARK_HOME/jars/
+#COPY ../target/sparkbasics-1.0.0.jar $SPARK_HOME/jars/
 
 
 RUN chmod +x /opt/*.sh
