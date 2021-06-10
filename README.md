@@ -1,6 +1,6 @@
 * Add your code in `src/main/`
 * Test your code with `src/tests/`
-* Modify dockerfile
+* Modify dockerfile if needed
 * Build and push docker image
 * Deploy infrastructure with terraform
 ```
