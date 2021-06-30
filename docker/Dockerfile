@@ -17,9 +17,9 @@ RUN set -ex && \
     rm /bin/sh && \
     ln -sv /bin/bash /bin/sh && \
     echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
-    chgrp root /etc/passwd && chmod ug+rw /etc/passwd \
+    chgrp root /etc/passwd && chmod ug+rw /etc/passwd && \
     # Removed the .cache to save space
-    rm -r /root/.cache && rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/*
 
 RUN wget -O /spark-${SPARK_VERSION}-bin-without-hadoop.tgz https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz && \
     tar -xzf /spark-${SPARK_VERSION}-bin-without-hadoop.tgz -C /opt/ && \
@@ -42,11 +42,10 @@ RUN wget -O $SPARK_HOME/jars/hadoop-azure-datalake-${HADOOP_VERSION}.jar https:/
 RUN wget -O $SPARK_HOME/jars/azure-storage-7.0.0.jar https://repo1.maven.org/maven2/com/microsoft/azure/azure-storage/7.0.0/azure-storage-7.0.0.jar
 RUN wget -O $SPARK_HOME/jars/azure-data-lake-store-sdk-2.3.6.jar https://repo1.maven.org/maven2/com/microsoft/azure/azure-data-lake-store-sdk/2.3.6/azure-data-lake-store-sdk-2.3.6.jar
 RUN wget -O $SPARK_HOME/jars/azure-keyvault-core-1.0.0.jar https://repo1.maven.org/maven2/com/microsoft/azure/azure-keyvault-core/1.0.0/azure-keyvault-core-1.0.0.jar
-
 RUN wget -O $SPARK_HOME/jars/azure-keyvault-core-1.0.0.jar https://repo1.maven.org/maven2/ch/hsr/geohash/1.4.0/geohash-1.4.0.jar
 
-COPY entrypoint.sh /opt/
-#COPY ../target/sparkbasics-1.0.0.jar $SPARK_HOME/jars/
+COPY ./entrypoint.sh /opt/
+COPY ../target/sparkbasics-*.jar /opt/
 
 
 RUN chmod +x /opt/*.sh
