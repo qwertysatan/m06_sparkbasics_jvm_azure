@@ -11,7 +11,7 @@ terraform apply terraform.plan
 ....
 terraform destroy
 ```
-* Launch Spark app in cluster mode on AKS
+* Launch Spark app in cluster mode on Kubernetes Cluster
 ```
 spark-submit \
     --master k8s://https://<k8s-apiserver-host>:<k8s-apiserver-port> \
